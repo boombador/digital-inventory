@@ -9,22 +9,35 @@ if (redirectToHTTPS && window.location.protocol !== 'https:') {
   window.location = 'https://' + window.location.host;
 }
 
-// This is the page root defined in our partial `basic-body.html`
-const root = document.getElementById('root');
-//console.log(root);
+const clearChildren = (parentElement) => {
+  // removes the children from the DOM by redefining what
+  // html is inside of the root element
+  parentElement.innerHTML = '';
+}
 
-// removes the children from the DOM by redefining what html is inside of the
-// root element (skipping because we'll define some contents instead)
-//root.innerHTML = '';
+const addLoadedToElement = (parentElement) => {
+  // instead of directly rewriting the DOM, this approach
+  // uses the document api to create and add new elements
+  // to the given element that will serve as parent
+  const newDiv = document.createElement('div');
+  newDiv.innerText = 'Page has loaded!';
+  parentElement.appendChild(newDiv);
+  return newDiv;
+}
 
-// example of using template strings with `` for multiline strings
-// and including html in the rewritten dom
-root.innerHTML = `
-  <div>
-    Page has loaded!
-  </div>
-`;
+const initApp = () => {
+  // a vanilla js approach to adding page html builds
+  // the dom from the root node defined in our partial
+  // `basic-body.html`
+  const rootElement = document.getElementById('root');
+  clearChildren(rootElement);
+  const loadedDiv = addLoadedToElement(rootElement);
 
-// TODO: call app logic to construct the pages and add interactivity here
-// currently just calling some sample code
-testMain();
+  // TODO: write app logic to construct the pages and add
+  // interactivity here instead of this test code
+  console.log(rootElement);
+  console.log(loadedDiv);
+  testMain();
+}
+
+initApp();
