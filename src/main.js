@@ -4,8 +4,9 @@ import 'prismjs/themes/prism.css';
 import '@/assets/styles.scss';
 import { samples, testMain } from '@/checking';
 
+// reload https version of page if necessary
 if (redirectToHTTPS && window.location.protocol !== 'https:') {
-  // hacky, ideally this should be an HTTP (301 ?) redirect
+  // ideally this should be an HTTP (301 ?) redirect
   window.location = 'https://' + window.location.host;
 }
 
