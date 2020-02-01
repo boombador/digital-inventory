@@ -7,7 +7,7 @@ import {
 
 import Home from '@/components/Home';
 
-export const App = () => (
+const App = () => (
   <Router>
     <Route path="/" component={Home} exact />
   </Router>
