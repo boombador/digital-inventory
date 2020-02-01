@@ -4,6 +4,4 @@ const logAndReturn = x => {
 };
 
 export const balanceFor = transactions =>
-  transactions
-    .map(t => t.amount)
-    .reduce((total, amount) => total + amount, 0);
+  transactions.map(t => t.amount).reduce((total, amount) => total + amount, 0);
