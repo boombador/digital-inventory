@@ -1,40 +1,48 @@
 {
-  "name": "digital-inventory",
-  "version": "0.1.0",
-  "description": "data recording for personal organization",
+  "name": "computational-crochet",
+  "version": "0.2.0",
+  "description": "tools to assist with planning and performance of crochet",
   "main": "src/entry.js",
   "scripts": {
-    "build:prod": "DEPLOY_ENV='production' webpack",
-    "build:dev": "webpack",
-    "build:watch": "webpack-dev-server",
+    "start": "webpack-dev-server",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boombador/PLACEHOLDER.git"
+    "url": "git+https://github.com/boombador/computational-crochet.git"
   },
   "author": "Ian McLaughlin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boombador/PLACEHOLDER/issues"
+    "url": "https://github.com/boombador/boombador.github.io/issues"
   },
-  "homepage": "https://github.com/boombador/PLACEHOLDER#readme",
+  "homepage": "https://github.com/boombador/boombador.github.io#readme",
   "dependencies": {
+    "@tweenjs/tween.js": "^17.3.0",
     "normalize.css": "^8.0.1",
-    "query-string": "^6.5.0"
+    "query-string": "^6.5.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-three-fiber": "^2.0.11",
+    "styled-components": "^4.2.0",
+    "three": "^0.103.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@loadable/component": "^5.10.1",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.1",
     "css-loader": "^2.1.1",
     "html-loader": "^0.5.5",
     "html-webpack-partials-plugin": "^0.5.1",
     "html-webpack-plugin": "^4.0.0-beta.5",
-    "node-sass": "^4.12.0",
     "prismjs": "^1.16.0",
+    "node-sass": "^4.12.0",
     "raw-loader": "^2.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

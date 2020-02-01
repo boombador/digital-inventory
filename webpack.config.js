@@ -5,34 +5,36 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
+const PORT = process.env.PORT;
 const isProd = process.env.DEPLOY_ENV === 'production';
+const appTitle = 'Digital Inventory';
 
 module.exports = {
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
+  entry: './src/entry.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js'
   },
-  entry: './src/main.js',
   resolve: {
     alias: {
       ['@']: path.resolve(__dirname, 'src'),
     },
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
   },
   mode: isProd ? 'production' : 'development',
   devtool: 'inline-source-map',
   devServer: {
     historyApiFallback: true,
     contentBase: [
-      //path.resolve(__dirname, 'dist'),
+      path.resolve(__dirname, 'dist'),
       path.resolve(__dirname, 'static')
     ],
     compress: true,
-    port: 9000
+    port: PORT
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   module: {
     rules: [
@@ -40,7 +42,12 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
+          // alternatively could put these options in `.babelrc`
+          options: {
+            "presets": ["@babel/preset-env", "@babel/preset-react"],
+            "plugins": ["@babel/plugin-syntax-dynamic-import"]
+          }
         },
       },
       {
@@ -72,7 +79,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: isProd ? 'Digital Inventory' : 'DI dev',
+      title: isProd ? appTitle : 'local dev server',
       // options set by html-minifier, currently using defaults set by
       // HtmlWebpackPlugin
       minify: {
