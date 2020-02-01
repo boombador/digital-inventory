@@ -4,10 +4,10 @@ import 'normalize.css';
 import 'prismjs/themes/prism.css';
 
 import '@/assets/main.scss';
-//import App from '@/components/App';
+import App from '@/components/App';
 
 const redirectForHTTPS = () => {
-  if (redirectToHTTPS && window.location.protocol !== 'https:') {
+  if (REDIRECT_TO_HTTPS && window.location.protocol !== 'https:') {
     // hacky, ideally this should be an HTTP (301 ?) redirect
     window.location = 'https://' + window.location.host;
   } else {
@@ -23,12 +23,11 @@ const mountReact = element => {
   ReactDOM.render(<App/>, element);
 }
 
-const App = () => null;
-
 const init = () => {
   redirectForHTTPS();
 
   const appRoot = document.getElementById('root');
+  clearElementChildren(appRoot);
   mountReact(appRoot);
 };
 

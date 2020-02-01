@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <header>
-    <h1><Link to="/">{APP_TITLE}</Link></h1>
-    <p>{APP_SUBTITLE}</p>
+    <Link to="/">
+      <h1>{APP_TITLE}</h1>
+    </Link>
+    {APP_SUBTITLE && (
+      <p>{APP_SUBTITLE}</p>
+    )}
   </header>
 );
 
@@ -17,5 +22,7 @@ const Layout = ({ children }) => (
 const Home = () => (
   <Layout>
     <div>Home page goes here!</div>
-  </Layout
+  </Layout>
 );
+
+export default Home;
