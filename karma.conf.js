@@ -1,12 +1,12 @@
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     //root path location to resolve paths defined in files and exclude
-    basePath: '',
+    basePath: "",
     //files/patterns to exclude from loaded files
     exclude: [],
     //files/patterns to load in the browser
     files: [
-      { pattern: 'tests/*.js', watched: true, served: true, included: true }
+      { pattern: "tests/**.js", watched: true, served: true, included: true }
       /*parameters:
           watched: if autoWatch is true all files that have set watched to true will be watched for changes
           served: should the files be served by Karma's webserver?
@@ -16,7 +16,7 @@ module.exports = function (config) {
           {pattern: '*.html', watched:true, served:true, included:false}
           {pattern: 'images/*', watched:false, served:true, included:false} */
     ],
- 
+
     //executes the tests whenever one of watched files changes
     autoWatch: true,
     //if true, Karma will run tests and then exit browser
@@ -25,18 +25,20 @@ module.exports = function (config) {
     failOnEmptyTestSuite: false,
     //reduce the kind of information passed to the bash
     logLevel: config.LOG_WARN, //config.LOG_DISABLE, config.LOG_ERROR, config.LOG_INFO, config.LOG_DEBUG
- 
+
     //list of frameworks you want to use, only jasmine is installed with this boilerplate
-    frameworks: ['jasmine'],
+    frameworks: ["jasmine"],
     //list of browsers to launch and capture
-    browsers: ['Chrome'/*,'PhantomJS','Firefox','Edge','ChromeCanary','Opera','IE','Safari'*/],
+    browsers: [
+      "Chrome" /*,'PhantomJS','Firefox','Edge','ChromeCanary','Opera','IE','Safari'*/
+    ],
     //list of reporters to use
-    reporters: ['mocha', 'kjhtml'/*,'dots','progress','spec'*/],
- 
+    reporters: ["mocha", "kjhtml" /*,'dots','progress','spec'*/],
+
     //address that the server will listen on, '0.0.0.0' is default
-    listenAddress: '0.0.0.0',
+    listenAddress: "0.0.0.0",
     //hostname to be used when capturing browsers, 'localhost' is default
-    hostname: 'localhost',
+    hostname: "localhost",
     //the port where the web server will be listening, 9876 is default
     port: 9876,
     //when a browser crashes, karma will try to relaunch, 2 is default
@@ -47,7 +49,7 @@ module.exports = function (config) {
     browserNoActivityTimeout: 10000,
     //timeout for capturing a browser, 60000 is default
     captureTimeout: 60000,
- 
+
     client: {
       //capture all console output and pipe it to the terminal, true is default
       captureConsole: false,
@@ -62,7 +64,7 @@ module.exports = function (config) {
         random: false
       }
     },
- 
+
     /* karma-webpack config
        pass your webpack configuration for karma
        add `babel-loader` to the webpack configuration to make 
@@ -74,9 +76,9 @@ module.exports = function (config) {
           {
             test: /\.js$/i,
             exclude: /(node_modules)/,
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env']
+              presets: ["@babel/preset-env"]
             }
           }
         ]
@@ -84,17 +86,17 @@ module.exports = function (config) {
     },
     preprocessors: {
       //add webpack as preprocessor to support require() in test-suits .js files
-      './tests/*.js': ['webpack']
+      "./tests/*.js": ["webpack"]
     },
     webpackMiddleware: {
       //turn off webpack bash output when run the tests
       noInfo: true,
-      stats: 'errors-only'
+      stats: "errors-only"
     },
- 
+
     /*karma-mocha-reporter config*/
     mochaReporter: {
-      output: 'noFailures'  //full, autowatch, minimal
+      output: "noFailures" //full, autowatch, minimal
     }
   });
 };
