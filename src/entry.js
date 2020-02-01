@@ -18,7 +18,7 @@ const clearElementChildren = parentElement => {
 }
 
 const mountReact = element => {
-  ReactDOM.render(<App/>, element));
+  ReactDOM.render(<App/>, element);
 }
 
 const init = () => {
@@ -26,7 +26,7 @@ const init = () => {
 
   const appRoot = document.getElementById('root');
   clearElementChildren(appRoot);
-  mountReactOnPage(appRoot);
+  mountReact(appRoot);
 };
 
 init();
