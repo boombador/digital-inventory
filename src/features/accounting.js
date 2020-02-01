@@ -1,7 +1,7 @@
-const logAndReturn = x => {
-  console.log(x);
-  return x;
-};
+import { logAndReturn } from "@/util/debug";
 
 export const balanceFor = transactions =>
-  transactions.map(t => t.amount).reduce((total, amount) => total + amount, 0);
+  transactions
+    .map(logWithLabelAndReturn("transaction"))
+    .map(t => t.amount)
+    .reduce((total, amount) => total + amount, 0);
