@@ -79,7 +79,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: isProd ? appTitle : 'local dev server',
+      title: `${appTitle} | local dev server`,
       // options set by html-minifier, currently using defaults set by
       // HtmlWebpackPlugin
       minify: {

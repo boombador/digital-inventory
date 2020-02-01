@@ -1,7 +1,7 @@
 {
-  "name": "computational-crochet",
+  "name": "digital-inventory",
   "version": "0.2.0",
-  "description": "tools to assist with planning and performance of crochet",
+  "description": "data recording for personal organization",
   "main": "src/entry.js",
   "scripts": {
     "start": "webpack-dev-server",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boombador/computational-crochet.git"
+    "url": "git+https://github.com/boombador/digital-inventory.git"
   },
   "author": "Ian McLaughlin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boombador/boombador.github.io/issues"
+    "url": "https://github.com/boombador/digital-inventory/issues"
   },
-  "homepage": "https://github.com/boombador/boombador.github.io#readme",
+  "homepage": "https://github.com/boombador/digital-inventory#readme",
   "dependencies": {
     "@tweenjs/tween.js": "^17.3.0",
     "normalize.css": "^8.0.1",
