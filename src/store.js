@@ -1,21 +1,12 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { actionCreatorIgnoresArguments } from "@/util/store";
 
 export const counterSlice = createSlice({
   name: "counter",
   initialState: 0,
   reducers: {
-    increment: {
-      reducer: state => state + 1,
-      prepare: () => ({
-        payload: undefined
-      })
-    },
-    decrement: {
-      reducer: state => state - 1,
-      prepare: () => ({
-        payload: undefined
-      })
-    }
+    increment: actionCreatorIgnoresArguments(state => state + 1),
+    decrement: actionCreatorIgnoresArguments(state => state - 1)
   }
 });
 
