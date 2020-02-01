@@ -19,15 +19,12 @@
   },
   "homepage": "https://github.com/boombador/digital-inventory#readme",
   "dependencies": {
-    "@tweenjs/tween.js": "^17.3.0",
     "normalize.css": "^8.0.1",
     "query-string": "^6.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-three-fiber": "^2.0.11",
-    "styled-components": "^4.2.0",
-    "three": "^0.103.0"
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

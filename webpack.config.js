@@ -5,12 +5,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 const isProd = process.env.DEPLOY_ENV === 'production';
 const APP_TITLE = 'Digital Inventory';
 const APP_SUBTITLE = '';
 
-// console.log(`Is prod: ${isProd}`);
+console.log(`Is prod: ${isProd}`);
 
 module.exports = {
   entry: './src/entry.js',
@@ -29,7 +29,7 @@ module.exports = {
     historyApiFallback: true,
     contentBase: [
       path.resolve(__dirname, 'dist'),
-      path.resolve(__dirname, 'static')
+      path.resolve(__dirname, 'public')
     ],
     compress: true,
     port: PORT
@@ -58,21 +58,8 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.glsl$/,
-        use: 'raw-loader',
-      },
-      {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.md$/,
-        use: [
-          {
-            loader: path.resolve('./post-loader.js'),
-            options: {}
-          }
-        ]
       }
     ]
   },
