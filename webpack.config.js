@@ -1,41 +1,40 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
 
 const PORT = process.env.PORT || 8080;
-const isProd = process.env.DEPLOY_ENV === 'production';
-const APP_TITLE = 'Digital Inventory';
-const APP_SUBTITLE = '';
+const isProd = process.env.DEPLOY_ENV === "production";
+const APP_TITLE = "Digital Inventory";
 
 module.exports = {
-  entry: './src/entry.js',
+  entry: "./src/entry.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js"
   },
   resolve: {
     alias: {
-      ['@']: path.resolve(__dirname, 'src'),
-    },
+      ["@"]: path.resolve(__dirname, "src")
+    }
   },
-  mode: isProd ? 'production' : 'development',
-  devtool: 'inline-source-map',
+  mode: isProd ? "production" : "development",
+  devtool: "inline-source-map",
   devServer: {
     historyApiFallback: true,
     contentBase: [
-      path.resolve(__dirname, 'dist'),
-      path.resolve(__dirname, 'public')
+      path.resolve(__dirname, "dist"),
+      path.resolve(__dirname, "public")
     ],
     compress: true,
     port: PORT
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
-    },
+      chunks: "all"
+    }
   },
   module: {
     rules: [
@@ -46,26 +45,25 @@ module.exports = {
           loader: "babel-loader",
           // alternatively could put these options in `.babelrc`
           options: {
-            "presets": ["@babel/preset-env", "@babel/preset-react"],
-            "plugins": ["@babel/plugin-syntax-dynamic-import"]
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-syntax-dynamic-import"]
           }
-        },
+        }
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
       REDIRECT_TO_HTTPS: JSON.stringify(isProd),
-      APP_TITLE: JSON.stringify(APP_TITLE),
-      APP_SUBTITLE: JSON.stringify(APP_SUBTITLE),
+      APP_TITLE: JSON.stringify(APP_TITLE)
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -79,12 +77,12 @@ module.exports = {
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true
-      },
+      }
     }),
     new HtmlWebpackPartialsPlugin({
-      path: path.resolve(__dirname, 'src', 'partials', 'basic-body.html'),
-      location: 'body',
-      priority: 'low',
-    }),
+      path: path.resolve(__dirname, "src", "partials", "basic-body.html"),
+      location: "body",
+      priority: "low"
+    })
   ]
 };

@@ -4,8 +4,18 @@ export const counterSlice = createSlice({
   name: "counter",
   initialState: 0,
   reducers: {
-    increment: state => state + 1,
-    decrement: state => state - 1
+    increment: {
+      reducer: state => state + 1,
+      prepare: () => ({
+        payload: undefined
+      })
+    },
+    decrement: {
+      reducer: state => state - 1,
+      prepare: () => ({
+        payload: undefined
+      })
+    }
   }
 });
 
