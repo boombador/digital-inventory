@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
@@ -9,8 +9,6 @@ const PORT = process.env.PORT || 8080;
 const isProd = process.env.DEPLOY_ENV === 'production';
 const APP_TITLE = 'Digital Inventory';
 const APP_SUBTITLE = '';
-
-console.log(`Is prod: ${isProd}`);
 
 module.exports = {
   entry: './src/entry.js',
@@ -65,9 +63,9 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      redirectToHTTPS: JSON.stringify(isProd),
-      APP_TITLE: APP_TITLE,
-      APP_SUBTITLE: APP_SUBTITLE,
+      REDIRECT_TO_HTTPS: JSON.stringify(isProd),
+      APP_TITLE: JSON.stringify(APP_TITLE),
+      APP_SUBTITLE: JSON.stringify(APP_SUBTITLE),
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
