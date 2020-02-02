@@ -17,8 +17,12 @@ const Header = () => (
 
 const Layout = ({ children }) => (
   <React.Fragment>
-    <Header />
-    {children}
+    <div className="pure-u-1-5" style={{ height: 1 }}></div>
+    <div className="pure-u-3-5">
+      <Header />
+      {children}
+    </div>
+    <div className="pure-u-1-5" style={{ height: 1 }}></div>
   </React.Fragment>
 );
 

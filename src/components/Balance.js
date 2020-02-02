@@ -1,8 +1,9 @@
 import React from "react";
-import Layout from "@/components/Layout";
-import { balanceFor } from "@/features/accounting";
 import { connect } from "react-redux";
 import { counterSlice } from "@/store";
+import { balanceFor } from "@/features/accounting";
+import Layout from "@/components/Layout";
+import Button from "@/components/Button";
 
 const {
   actions: { increment, decrement }
@@ -17,8 +18,8 @@ const Balance = props => {
         <span>Current balance:</span>
         <span>{count}</span>
       </div>
-      <button onClick={decrement}>Decrease that Pesky Balance</button>
-      <button onClick={increment}>Make it Bigger, Why Don&apos;t You!</button>
+      <Button onClick={decrement} text="Decrease that Pesky Balance" />
+      <Button onClick={increment} text="Make it Bigger, Why Don't You!" />
     </Layout>
   );
 };
