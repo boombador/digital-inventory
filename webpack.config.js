@@ -64,6 +64,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       REDIRECT_TO_HTTPS: JSON.stringify(isProd),
+      INCLUDE_SERVICE_WORKER: JSON.stringify(false), // so annoying, prevents refresh from taking effect
       APP_TITLE: JSON.stringify(APP_TITLE)
     }),
     new CleanWebpackPlugin(),

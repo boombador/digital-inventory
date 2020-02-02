@@ -30,7 +30,7 @@ const mountReact = element => {
 };
 
 const registerWorker = (workerPath, handleSuccess, handleError) => {
-  if ("serviceWorker" in navigator) {
+  if (INCLUDE_SERVICE_WORKER && "serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
         .register(workerPath)
