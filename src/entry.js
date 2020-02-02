@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "normalize.css";
-import "prismjs/themes/prism.css";
 import { Provider } from "react-redux";
+import "purecss";
 
 import "@/assets/main.scss";
 import App from "@/components/App";
@@ -30,8 +29,24 @@ const mountReact = element => {
   );
 };
 
+const registerWorker = (workerPath, handleSuccess, handleError) => {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register(workerPath)
+        .then(registration => {
+          console.log("SW registered: ", registration);
+        })
+        .catch(registrationError => {
+          console.log("SW registration failed: ", registrationError);
+        });
+    });
+  }
+};
+
 const init = () => {
   redirectForHTTPS();
+  registerWorker("/service-worker.js");
 
   const appRoot = document.getElementById("root");
   clearElementChildren(appRoot);

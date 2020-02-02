@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 
 const PORT = process.env.PORT || 8080;
 const isProd = process.env.DEPLOY_ENV === "production";
@@ -78,6 +79,12 @@ module.exports = {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true
       }
+    }),
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true
     }),
     new HtmlWebpackPartialsPlugin({
       path: path.resolve(__dirname, "src", "partials", "basic-body.html"),
