@@ -10,6 +10,46 @@ const PORT = process.env.PORT || 8080;
 const isProd = process.env.DEPLOY_ENV === "production";
 const APP_TITLE = "Digital Inventory";
 
+// It's annoying to develop with the service work, it seems to prevents refresh
+// from taking effect. Disabling while we work on core functionality
+const enableServiceWorker = false;
+
+const regularPlugins = [
+  new webpack.DefinePlugin({
+    REDIRECT_TO_HTTPS: JSON.stringify(isProd),
+    INCLUDE_SERVICE_WORKER: JSON.stringify(enableServiceWorker),
+    APP_TITLE: JSON.stringify(APP_TITLE)
+  }),
+  new CleanWebpackPlugin(),
+  new HtmlWebpackPlugin({
+    title: `${APP_TITLE} | local dev server`,
+    // options set by html-minifier, currently using defaults set by
+    // HtmlWebpackPlugin
+    minify: {
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      useShortDoctype: true
+    }
+  }),
+  new HtmlWebpackPartialsPlugin({
+    path: path.resolve(__dirname, "src", "partials", "basic-body.html"),
+    location: "body",
+    priority: "low"
+  })
+];
+
+const webpackPlugins = !enableServiceWorker
+  ? regularPlugins
+  : [...regularPlugins, new WorkboxPlugin.GenerateSW({
+    // these options encourage the ServiceWorkers to get in there fast
+    // and not allow any straggling "old" SWs to hang around
+    clientsClaim: true,
+    skipWaiting: true
+  })];
+
 module.exports = {
   entry: "./src/entry.js",
   output: {
@@ -61,36 +101,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      REDIRECT_TO_HTTPS: JSON.stringify(isProd),
-      INCLUDE_SERVICE_WORKER: JSON.stringify(false), // so annoying, prevents refresh from taking effect
-      APP_TITLE: JSON.stringify(APP_TITLE)
-    }),
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: `${APP_TITLE} | local dev server`,
-      // options set by html-minifier, currently using defaults set by
-      // HtmlWebpackPlugin
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
-      }
-    }),
-    new WorkboxPlugin.GenerateSW({
-      // these options encourage the ServiceWorkers to get in there fast
-      // and not allow any straggling "old" SWs to hang around
-      clientsClaim: true,
-      skipWaiting: true
-    }),
-    new HtmlWebpackPartialsPlugin({
-      path: path.resolve(__dirname, "src", "partials", "basic-body.html"),
-      location: "body",
-      priority: "low"
-    })
-  ]
+  plugins: webpackPlugins,
 };
