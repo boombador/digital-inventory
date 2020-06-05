@@ -13,7 +13,11 @@ export const calculateDaysInMonth = timestamp => {
 
 // add up the amount from each transaction
 export const combinedTotal = transactions => {
-  return 0;
+  let result = 0;
+  transactions.forEach(transaction => {
+    result += transaction.amount;
+  })
+  return result;
 }
 
 // calculate the expected spend given the assumption that income (post-tax) is
