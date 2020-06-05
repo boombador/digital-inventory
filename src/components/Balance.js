@@ -6,10 +6,10 @@ import Layout from "@/components/Layout";
 import Button from "@/components/Button";
 
 const {
-  actions: { increment, decrement }
+  actions: { increment, decrement },
 } = counterSlice;
 
-const Balance = props => {
+const Balance = (props) => {
   const { count, increment, decrement } = props;
   return (
     <Layout>
@@ -36,8 +36,8 @@ const Balance = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  count: state
+const mapStateToProps = (state) => ({
+  count: state,
 });
 
 export default connect(mapStateToProps, { increment, decrement })(Balance);

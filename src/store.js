@@ -5,13 +5,13 @@ export const counterSlice = createSlice({
   name: "counter",
   initialState: 0,
   reducers: {
-    increment: actionCreatorIgnoresArguments(state => state + 1),
-    decrement: actionCreatorIgnoresArguments(state => state - 1)
-  }
+    increment: actionCreatorIgnoresArguments((state) => state + 1),
+    decrement: actionCreatorIgnoresArguments((state) => state - 1),
+  },
 });
 
 export const store = configureStore({
-  reducer: counterSlice.reducer
+  reducer: counterSlice.reducer,
 });
 
 export default store;
